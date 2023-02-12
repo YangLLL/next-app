@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { Inter } from '@next/font/google'
 import Link from 'next/link'
 import Layout, { siteTitle } from '@/components/layout'
 import { getSortedPostsData } from '../lib/posts'
@@ -7,9 +6,8 @@ import { getSortedPostsData } from '../lib/posts'
 import utilStyles from '@/styles/utils.module.css'
 import { GetStaticProps } from 'next'
 import Date from '@/components/date'
+import { useRouter } from 'next/router'
 
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({
   allPostsData
@@ -20,13 +18,14 @@ export default function Home({
     id: string
   }[]
 }) {
+  const router = useRouter()
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>[My Introduction]</p>
+        <p>A front-end developer, Familiar with HTML/CSS/JS, React/Vue, TypeScript, Have done Web pages, App, Mini Program </p>
         <p>This is a sample website</p>
         <Link href={'/posts/first-post'}>First Post</Link>
       </section>
@@ -52,6 +51,7 @@ export default function Home({
 
 
 export const getStaticProps: GetStaticProps = async () => {
+  console.log('index test ')
   const allPostsData = getSortedPostsData()
   return {
     props: {
